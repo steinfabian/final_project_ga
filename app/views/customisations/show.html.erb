@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @customisation.product_id %>
+</p>
+
+<p>
+  <strong>Part:</strong>
+  <%= @customisation.part_id %>
+</p>
+
+<p>
+  <strong>Print:</strong>
+  <%= @customisation.print_id %>
+</p>
+
+<p>
+  <strong>Style:</strong>
+  <%= @customisation.style_id %>
+</p>
+
+<%= link_to 'Edit', edit_customisation_path(@customisation) %> |
+<%= link_to 'Back', customisations_path %>

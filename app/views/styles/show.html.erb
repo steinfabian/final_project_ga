@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @style.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @style.price %>
+</p>
+
+<p>
+  <strong>Thumbnail:</strong>
+  <%= @style.thumbnail %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @style.image %>
+</p>
+
+<%= link_to 'Edit', edit_style_path(@style) %> |
+<%= link_to 'Back', styles_path %>

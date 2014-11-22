@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @print.name %>
+</p>
+
+<p>
+  <strong>Thumbnail:</strong>
+  <%= @print.thumbnail %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @print.image %>
+</p>
+
+<%= link_to 'Edit', edit_print_path(@print) %> |
+<%= link_to 'Back', prints_path %>

@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+
+  root :to => 'products#new'
+
+  resources :prints
+
+  resources :parts
+
+  resources :styles
+
+  resources :customisations
+
+  resources :products
+
+  resources :orders
+
   resources :customers
 
   # The priority is based upon order of creation: first created -> highest priority.
