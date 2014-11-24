@@ -15,16 +15,15 @@
 		<label class="price">$ 149.00</label>
 		<br>
 
-
 		<div class="customisation-display">
 			<!--TABS FOR STYLE AND PRINT-->
-			<ul class="nav nav-tabs nav-justified">
-		  		<li role="presentation" class="active"><a href="#">Styles</a></li>
-		  		<li role="presentation"><a href="#">Prints</a></li>
+			<ul class="nav nav-tabs nav-justified" id="customiser-tabs">
+		  		<li role="presentation" class="active" id="styles-tab"><a href="#styles-display">Styles</a></li>
+		  		<li role="presentation" id="styles-tab"><a href="#prints-display">Prints</a></li>
 			</ul>
 
-			<!--STYLE DISPLAY-->
-			<div class="style-display">
+			<!--STYLES DISPLAY-->
+			<div role="tabpanel" class="tab-pane active" id="styles-display">
 				<label for="style-tops">Tops</label>
 				<br>
 				<img class="style-thumbnail" src="http://placehold.it/180x150">
@@ -35,21 +34,49 @@
 				<img class="style-thumbnail" src="http://placehold.it/180x90">
 				<img class="style-thumbnail" src="http://placehold.it/180x90">
 			</div>
-			
-			<!--DROPDOWN TO SELECT PART-->
-			<div class="dropdown">
-				<li role="presentation" class="dropdown-header">Select part</li>
-			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-			    Select part
-			    <span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cup</a></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Strap</a></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Bottom</a></li>
-			  </ul>
-			</div>
 
+			<!--PRINTS DISPLAY-->
+			<div role="tabpanel" class="tab-pane hide" id="prints-display">
+				<!--DROPDOWN TO SELECT PART-->
+				<div class="dropdown">
+					<li role="presentation" class="dropdown-header">Select part</li>
+				  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+				    Select part
+				    <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cup</a></li>
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Strap</a></li>
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Bottom</a></li>
+				  </ul>
+				</div>
+				<!--PRINT THUMBNAILS-->
+				<label>Modern</label>
+				<br>
+				<img class="print-thumbnail" src="http://placehold.it/150x150">
+				<img class="print-thumbnail" src="http://placehold.it/150x150">
+				<img class="print-thumbnail" src="http://placehold.it/150x150">
+				<br>
+				<label>Classic</label>
+				<br>
+				<img class="print-thumbnail" src="http://placehold.it/150x150">
+				<img class="print-thumbnail" src="http://placehold.it/150x150">
+				<img class="print-thumbnail" src="http://placehold.it/150x150">
+			</div>
+			
+		<script>
+			$(document).ready(function () {
+				$('#styles-tab').on('click', function() {
+					$('#styles-display').toggleClass('hide');
+					$('#prints-display').toggleClass('hide');
+				});
+				$('#prints-tab').on('click', function() {
+					$('#prints-display').toggleClass('hide');
+					$('#styles-display').toggleClass('hide');
+				});
+		    // $('#myTab a:last').tab('show')
+			});
+		</script>
 
 		</div>
 	  </div>
