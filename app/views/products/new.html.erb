@@ -32,13 +32,13 @@
 				<div role="tabpanel" class="tab-pane active" id="styles-display">
 					<label for="style-tops" class="product-page">Tops</label>
 					<br>
-					<img class="style-thumbnail top style bandeau" id="top-style-bandeau" src="assets/top_style_bandeau_thumb.png">
-					<img class="style-thumbnail top style triangle" id="top-style-triangle" src="assets/top_style_triangle_thumb.png">
+					<img class="style-thumbnail top style bandeau" id="top-style-bandeau" data-type="bandeau"src="assets/top_style_bandeau_thumb.png">
+					<img class="style-thumbnail top style triangle" id="top-style-triangle" data-type="triangle"src="assets/top_style_triangle_thumb.png">
 					<br>
 					<label for="style-bottoms" class="product-page">Bottoms</label>
 					<br>
-					<img class="style-thumbnail bottom style bandeau" id="bottom-style-bandeau" src="assets/bottom_style_bandeau_thumb.png">
-					<img class="style-thumbnail bottom style triangle" id="bottom-style-triangle" src="assets/bottom_style_triangle_thumb.png">
+					<img class="style-thumbnail bottom style bandeau" id="bottom-style-bandeau" data-type="bandeau" src="assets/bottom_style_bandeau_thumb.png">
+					<img class="style-thumbnail bottom style triangle" id="bottom-style-triangle" data-type="triangle" src="assets/bottom_style_triangle_thumb.png">
 				</div>
 
 				<!--PRINTS DISPLAY-->
@@ -50,23 +50,23 @@
 					    <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-					    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cup</a></li>
-					    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Strap</a></li>
-					    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Bottom</a></li>
+					    <li role="presentation"><a role="menuitem" tabindex="-1" data-type="cup"href="#">Cup</a></li>
+					    <li role="presentation"><a role="menuitem" tabindex="-1" data-type="strap"href="#">Strap</a></li>
+					    <li role="presentation"><a role="menuitem" tabindex="-1" data-type="bottom"href="#">Bottom</a></li>
 					  </ul>
 					</div>
 					<!--PRINT THUMBNAILS-->
 					<label class="product-page">Classic</label>
 					<br>
-					<img class="print-thumbnail classic print floral" id="print-floral" src="assets/print_floral.png">
-					<img class="print-thumbnail classic print geo" id="print-geo" src="assets/print_geo.png">
-					<img class="print-thumbnail classic print retro" id="print-retro" src="assets/print_retro.png">
+					<img class="print-thumbnail classic print floral" id="print-floral" data-type="floral" src="assets/print_floral.png">
+					<img class="print-thumbnail classic print geo" id="print-geo" data-type="geo" src="assets/print_geo.png">
+					<img class="print-thumbnail classic print retro" id="print-retro" data-type="retro" src="assets/print_retro.png">
 					<br>
 					<label class="product-page">Modern</label>
 					<br>
-					<img class="print-thumbnail modern print pineapple" id="print-pineapple" src="assets/print_pineapple.png">
-					<img class="print-thumbnail modern print tropical" id="print-tropical" src="assets/print_tropical.png">
-					<img class="print-thumbnail modern print ice" id="print-ice" src="assets/print_ice.png">
+					<img class="print-thumbnail modern print pineapple" id="print-pineapple" data-type="pineapple" src="assets/print_pineapple.png">
+					<img class="print-thumbnail modern print tropical" id="print-tropical" data-type="tropial" src="assets/print_tropical.png">
+					<img class="print-thumbnail modern print ice" id="print-ice" data-type="ice" src="assets/print_ice.png">
 				</div>
 			</div>
 		<!-- <script>
@@ -91,6 +91,55 @@
 				$('#prints-tab').on('click', function() {
 					$('#prints-display').toggleClass('hide');
 					$('#styles-display').toggleClass('hide');
+				});
+		</script>
+
+		<script>
+				$(document).ready(function() {
+					var styleTop = "bandeau";
+					var styleBottom = "bandeau";
+					var printCup = "retro";
+					var printStrap = "floral";
+					var printBottom = "floral";
+
+					var imgTop = "/assets/top_" + styleTop + "_cup_" + printCup + "_strap_" + printStrap +".png";
+					var imgBottom = "/assets/bottom_" + styleBottom + "_bottom_" + printBottom +".png";
+					$(".customisation-display").on('click', 'img', function() {
+						
+
+
+						if ($(this).hasClass('style') && $(this).hasClass('top')) {
+							styleTop = $(this).attr('data-type');
+							console.log($(this).attr('data-type'));
+						};
+
+						if ($(this).hasClass('style') && $(this).hasClass('bottom')) {
+							styleBottom = $(this).attr('data-type');
+							console.log($(this).attr('data-type'));
+						};
+
+						if ($(this).hasClass('print')) {
+							printCup = $(this).attr('data-type');
+							printStrap = $(this).attr('data-type');
+							printBottom = $(this).attr('data-type');
+						};
+
+
+						// switch ($(this)) {
+						// 	case $(this).hasClass('style') && $(this).hasClass('top'):
+						// 		styleTop = $(this).attr('data-type');
+						// 		console.log($(this).attr('data-type'));
+						// 	case $(this).hasClass('style') && $(this).hasClass('bottom'):
+						// 		styleBottom = $(this).attr('data-type');
+						// 		console.log($(this).attr('data-type'));
+						// 	default:
+						// 		console.log('default');
+
+						$('#top-display').attr('src', imgTop);
+						$('#bottom-display').attr('src', imgBottom);
+					});
+					console.log(imgTop);
+					console.log(imgBottom);
 				});
 		</script>
 
