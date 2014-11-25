@@ -5,10 +5,10 @@
 
 	  <!--LEFT HALF-->
 	  <div class="col-md-6 left-display">
-	  	<img class="product-display" id="top-display" src="assets/top_style_bandeau_image.png">
+	  	<img class="product-display" id="top-display" src="assets/top_bandeau_cup_floral_strap_floral.png">
 	  	<br>
 	  	<br>
-	  	<img class="product-display" id="bottom-display" src="assets/bottom_style_bandeau_image.png" class="img-responsive">
+	  	<img class="product-display" id="bottom-display" src="assets/bottom_bandeau_bottom_floral.png" class="img-responsive">
 	  </div>
 
 	  <!--RIGHT HALF-->
@@ -27,24 +27,24 @@
 				</ul>
 			</div>
 
-			<div role="tab-content">
+			<div role="tab-content" class="tab-content-container">
 				<!--STYLES DISPLAY-->
 				<div role="tabpanel" class="tab-pane active" id="styles-display">
 					<label for="style-tops" class="product-page">Tops</label>
 					<br>
-					<img class="style-thumbnail" src="assets/top_style_bandeau_thumb.png">
-					<img class="style-thumbnail" src="assets/top_style_triangle_thumb.png">
+					<img class="style-thumbnail top style bandeau" id="top-style-bandeau" src="assets/top_style_bandeau_thumb.png">
+					<img class="style-thumbnail top style triangle" id="top-style-triangle" src="assets/top_style_triangle_thumb.png">
 					<br>
 					<label for="style-bottoms" class="product-page">Bottoms</label>
 					<br>
-					<img class="style-thumbnail" src="assets/bottom_style_bandeau_thumb.png">
-					<img class="style-thumbnail" src="assets/bottom_style_triangle_thumb.png">
+					<img class="style-thumbnail bottom style bandeau" id="bottom-style-bandeau" src="assets/bottom_style_bandeau_thumb.png">
+					<img class="style-thumbnail bottom style triangle" id="bottom-style-triangle" src="assets/bottom_style_triangle_thumb.png">
 				</div>
 
 				<!--PRINTS DISPLAY-->
 				<div role="tabpanel" class="tab-pane hide" id="prints-display">
 					<!--DROPDOWN TO SELECT PART-->
-					<div class="dropdown form-oontrol">
+					<div class="dropdown">
 					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 					    Select part
 					    <span class="caret"></span>
@@ -56,17 +56,17 @@
 					  </ul>
 					</div>
 					<!--PRINT THUMBNAILS-->
-					<label class="product-page">Modern</label>
-					<br>
-					<img class="print-thumbnail" src="assets/print_floral.png">
-					<img class="print-thumbnail" src="assets/print_geo.png">
-					<img class="print-thumbnail" src="assets/print_retro.png">
-					<br>
 					<label class="product-page">Classic</label>
 					<br>
-					<img class="print-thumbnail" src="assets/print_pineapple.png">
-					<img class="print-thumbnail" src="assets/print_tropical.png">
-					<img class="print-thumbnail" src="assets/print_ice.png">
+					<img class="print-thumbnail classic print floral" id="print-floral" src="assets/print_floral.png">
+					<img class="print-thumbnail classic print geo" id="print-geo" src="assets/print_geo.png">
+					<img class="print-thumbnail classic print retro" id="print-retro" src="assets/print_retro.png">
+					<br>
+					<label class="product-page">Modern</label>
+					<br>
+					<img class="print-thumbnail modern print pineapple" id="print-pineapple" src="assets/print_pineapple.png">
+					<img class="print-thumbnail modern print tropical" id="print-tropical" src="assets/print_tropical.png">
+					<img class="print-thumbnail modern print ice" id="print-ice" src="assets/print_ice.png">
 				</div>
 			</div>
 		<!-- <script>
@@ -93,6 +93,16 @@
 					$('#styles-display').toggleClass('hide');
 				});
 		</script>
+
+		<script>
+				$(function(){
+				    $(".dropdown-menu").on('click', 'li a', function(){
+				      $(".btn.dropdown-toggle:first-child").text($(this).text());
+				      $(".btn.dropdown-toggle:first-child").val($(this).text());
+				   });
+				});
+		</script>
+
 		</div>
 	  </div>
 	</div>

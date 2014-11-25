@@ -2,7 +2,7 @@
 @import "bootstrap";
 
 .row {
-	/*border: 1px solid black;*/
+	border: 1px solid black;
 }
 
 .page-header {
@@ -13,4 +13,8 @@
 .page-header h1 {
 	font-size: 2em;
 	display: inline-block;
+}
+
+.dropdown-toggle {
+	margin: 1em;
 }
