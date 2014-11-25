@@ -5,14 +5,16 @@
 
 	  <!--LEFT HALF-->
 	  <div class="col-md-6 left-display">
-	  	<img class="product-display" id="top-display" src="http://placehold.it/300x250">
-	  	<img class="product-display" id="bottom-display" src="http://placehold.it/300x150">
+	  	<img class="product-display" id="top-display" src="assets/top_style_bandeau_image.png">
+	  	<br>
+	  	<br>
+	  	<img class="product-display" id="bottom-display" src="assets/bottom_style_bandeau_image.png" class="img-responsive">
 	  </div>
 
 	  <!--RIGHT HALF-->
 	  <div class="col-md-6 right-display">
-		<button type="button" class="btn btn-primary">Buy</button>
-		<label class="price">$ 149.00</label>
+		<button type="button" class="btn btn-primary product-page">Buy</button>
+		<label class="price product-page">$ 149.00</label>
 		<br>
 
 		<div class="customisation-display">
@@ -28,22 +30,21 @@
 			<div role="tab-content">
 				<!--STYLES DISPLAY-->
 				<div role="tabpanel" class="tab-pane active" id="styles-display">
-					<label for="style-tops">Tops</label>
+					<label for="style-tops" class="product-page">Tops</label>
 					<br>
-					<img class="style-thumbnail" src="http://placehold.it/180x150">
-					<img class="style-thumbnail" src="http://placehold.it/180x150">
+					<img class="style-thumbnail" src="assets/top_style_bandeau_thumb.png">
+					<img class="style-thumbnail" src="assets/top_style_triangle_thumb.png">
 					<br>
-					<label for="style-bottoms">Bottoms</label>
+					<label for="style-bottoms" class="product-page">Bottoms</label>
 					<br>
-					<img class="style-thumbnail" src="http://placehold.it/180x90">
-					<img class="style-thumbnail" src="http://placehold.it/180x90">
+					<img class="style-thumbnail" src="assets/bottom_style_bandeau_thumb.png">
+					<img class="style-thumbnail" src="assets/bottom_style_triangle_thumb.png">
 				</div>
 
 				<!--PRINTS DISPLAY-->
-				<div role="tabpanel" class="tab-pane" id="prints-display">
+				<div role="tabpanel" class="tab-pane hide" id="prints-display">
 					<!--DROPDOWN TO SELECT PART-->
-					<div class="dropdown">
-						<li role="presentation" class="dropdown-header">Select part</li>
+					<div class="dropdown form-oontrol">
 					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 					    Select part
 					    <span class="caret"></span>
@@ -55,44 +56,43 @@
 					  </ul>
 					</div>
 					<!--PRINT THUMBNAILS-->
-					<label>Modern</label>
+					<label class="product-page">Modern</label>
 					<br>
-					<img class="print-thumbnail" src="http://placehold.it/150x150">
-					<img class="print-thumbnail" src="http://placehold.it/150x150">
-					<img class="print-thumbnail" src="http://placehold.it/150x150">
+					<img class="print-thumbnail" src="assets/print_floral.png">
+					<img class="print-thumbnail" src="assets/print_geo.png">
+					<img class="print-thumbnail" src="assets/print_retro.png">
 					<br>
-					<label>Classic</label>
+					<label class="product-page">Classic</label>
 					<br>
-					<img class="print-thumbnail" src="http://placehold.it/150x150">
-					<img class="print-thumbnail" src="http://placehold.it/150x150">
-					<img class="print-thumbnail" src="http://placehold.it/150x150">
+					<img class="print-thumbnail" src="assets/print_pineapple.png">
+					<img class="print-thumbnail" src="assets/print_tropical.png">
+					<img class="print-thumbnail" src="assets/print_ice.png">
 				</div>
 			</div>
+		<!-- <script>
+		// 	$(document).ready(function () {
+		// 		$('#customiser-tabs a').click(function (e) {
+		// 		  e.preventDefault();
+		// 		  $('#customiser-tabs a[href="#styles-display"]').tab('show'); // Select tab by name
+		// 		  $('#customiser-tabs a[href="#prints-display"]').tab('show'); // Select tab by name
+		// 		});
+		// 	    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+		// 		  e.target; // newly activated tab
+		// 		  e.relatedTarget; // previous active tab
+		// 		});
+		// 	});
+		// </script>-->
+
 		<script>
-			$(document).ready(function () {
-				$('#customiser-tabs a').click(function (e) {
-				  e.preventDefault();
-				  $('#customiser-tabs a[href="#styles-display"]').tab('show'); // Select tab by name
-				  $('#customiser-tabs a[href="#prints-display"]').tab('show'); // Select tab by name
+				$('#styles-tab').on('click', function() {
+					$('#styles-display').toggleClass('hide');
+					$('#prints-display').toggleClass('hide');
 				});
-			    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-				  e.target; // newly activated tab
-				  e.relatedTarget; // previous active tab
+				$('#prints-tab').on('click', function() {
+					$('#prints-display').toggleClass('hide');
+					$('#styles-display').toggleClass('hide');
 				});
-			});
-
-
 		</script>
-
-				<!--// $('#styles-tab').on('click', function() {
-				// 	$('#styles-display').toggleClass('hide');
-				// 	$('#prints-display').toggleClass('hide');
-				// });
-				// $('#prints-tab').on('click', function() {
-				// 	$('#prints-display').toggleClass('hide');
-				// 	$('#styles-display').toggleClass('hide');
-				// });-->
-
 		</div>
 	  </div>
 	</div>
