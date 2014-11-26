@@ -100,6 +100,32 @@ $(function(){
    });
 });
 
+
+// DEFINE EVENT HANDLER FOR BUY BUTTON
+$(document).ready(function() {
+	$('#buy').on('click', function() {
+		console.log('buy button has been clicked');
+
+	// urls for ajax post requests:
+	// 1. /products to create new product
+	// 2. /customisations to create new customisation record
+	// 3. /orders to create new order
+	// 4. /products/:id to update product
+	// 5. /orders/:id to update order
+
+
+
+	});
+});
+
+
+
+
+// HIDE PRINTS THAT CANNOT BE APPIED TO THE SELECTED STYLE
+
+
+
+
 		// switch ($(this)) {
 		// 	case $(this).hasClass('style') && $(this).hasClass('top'):
 		// 		styleTop = $(this).attr('data-type');
