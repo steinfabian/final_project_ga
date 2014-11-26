@@ -58,6 +58,9 @@
 #                    PATCH  /customers/:id(.:format)           customers#update
 #                    PUT    /customers/:id(.:format)           customers#update
 #                    DELETE /customers/:id(.:format)           customers#destroy
+#              login GET    /login(.:format)                   session#new
+#                    POST   /login(.:format)                   session#create
+#                    DELETE /login(.:format)                   session#destroy
 #
 
 Rails.application.routes.draw do

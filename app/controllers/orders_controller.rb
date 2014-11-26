@@ -26,8 +26,72 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    binding.pry
+    
+    # CREATE TWO PRODUCTS: TOP AND BOTTOM
+    #find the values for kind and image for the top product from the params and consider them when creating the product
+    @kind_top = params['product']['0']['kind']
+    @image_top = params['product']['0']['image']
+    @product_top = Product.create(:kind => @kind_top, :image => @image_top)
+    #as above for the bottom product
+    @kind_bottom = params['product']['1']['kind']
+    @image_bottom = params['product']['1']['image']
+    @product_bottom = Product.create(:kind => @kind_bottom, :image => @image_bottom)
 
+    # CREATE THREE CUSTOMISATIONS: CUP AND STRAP FOR THE TOP PRODUCT PLUS BOTTOM FOR THE BOTTOM PRODUCT
+    #find the ids of each parameter of the CUP customisation by getting the params and looking up the respective ids
+    @cup_cust_product_id = Product.find_by(:image => params['customisations']['customisationCup']['product'])['id']
+    @cup_cust_part_id = Part.find_by(:name => params['customisations']['customisationCup']['part'])['id']
+    @cup_cust_print_id = Print.find_by(:name => params['customisations']['customisationCup']['print'])['id']
+    @cup_cust_style_id = Style.find_by(:name => params['customisations']['customisationCup']['style'])['id']
+    @customisation_cup = Customisation.create(
+      :product_id => @cup_cust_product_id, 
+      :part_id => @cup_cust_part_id, 
+      :print_id => @cup_cust_print_id, 
+      :style_id => @cup_cust_style_id)
+
+    #STRAP
+    @strap_cust_product_id = Product.find_by(:image => params['customisations']['customisationStrap']['product'])['id']
+    @strap_cust_part_id = Part.find_by(:name => params['customisations']['customisationStrap']['part'])['id']
+    @strap_cust_print_id = Print.find_by(:name => params['customisations']['customisationStrap']['print'])['id']
+    @strap_cust_style_id = Style.find_by(:name => params['customisations']['customisationStrap']['style'])['id']
+    @customisation_strap = Customisation.create(
+      :product_id => @strap_cust_product_id, 
+      :part_id => @strap_cust_part_id, 
+      :print_id => @strap_cust_print_id, 
+      :style_id => @strap_cust_style_id)
+
+    #BOTTOM
+    @bottom_cust_product_id = Product.find_by(:image => params['customisations']['customisationBottom']['product'])['id']
+    @bottom_cust_part_id = Part.find_by(:name => params['customisations']['customisationBottom']['part'])['id']
+    @bottom_cust_print_id = Print.find_by(:name => params['customisations']['customisationBottom']['print'])['id']
+    @bottom_cust_style_id = Style.find_by(:name => params['customisations']['customisationBottom']['style'])['id']   
+    @customisation_bottom = Customisation.create(
+      :product_id => @bottom_cust_product_id, 
+      :part_id => @bottom_cust_part_id, 
+      :print_id => @bottom_cust_print_id, 
+      :style_id => @bottom_cust_style_id)
+
+    # CREATE THE ORDER
+    @order = Order.create(:status => params['order']['status'])
+    session[:order_id] = @order.id
+    @order.products << @product_top 
+    @order.products << @product_bottom
+    top_price = @product_top.update :price => @product_top.customisations.first.style.price
+    bottom_price = @product_bottom.update :price => @product_bottom.customisations.first.style.price
+    @order.update :total_price => top_price + bottom_price
+
+    if @current_customer.present?
+      @order.update :customer_id => @current_customer.id
+      redirect_to order_path session[:order_id]
+    else
+      redirect_to login_path
+    end
+
+    
+    
+
+    binding.pry
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -37,6 +101,7 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
+    binding.pry
   end
 
   # PATCH/PUT /orders/1
@@ -70,7 +135,8 @@ class OrdersController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.require(:order).permit(:customer_id, :status, :total_price)
-    end
+    # def order_params
+    #   params.require(:order).permit(:customer_id, :status, :total_price)
+    # end
+
 end

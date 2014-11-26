@@ -18,7 +18,7 @@ $(document).ready(function() {
 	var printCup = "floral";
 	var printStrap = "floral";
 	var printBottom = "floral";
-	var part = '';
+	var part;
 
 	// DEFINE FUNCTION TO UPDATE THE SOURCE STRING OF THE TOP AND BOTTOM DISPLAY IMAGES BASED ON THE CUSTOMISATION
 	var updateImages = function() {
@@ -101,10 +101,66 @@ $(function(){
 });
 
 
-// DEFINE EVENT HANDLER FOR BUY BUTTON
+
 $(document).ready(function() {
+
+	var status = "The ajax request is completed."
+
+	// DEFINE DATA COLLECTIONS TO POST TO SERVER
+	var productData = [
+	  {
+	    kind: 'Top',
+	    image: 'top_bandeau_cup_floral_strap_floral.png'
+	  },
+	  {
+	    kind: 'Bottom',
+	    image: 'bottom_bandeau_bottom_floral.png'
+	  }
+	];
+
+	var customisationData = {
+  		customisationCup: {
+  			product: 'top_bandeau_cup_floral_strap_floral.png',
+  			part: 'Cup',
+  			print: 'Floral',
+  			style: 'Bandeau-Top',
+  			// in rails: style_id = Style.find_by(:name => params[:customisation][:style]).id
+  		},
+  		customisationStrap: {
+  			product: 'top_bandeau_cup_floral_strap_floral.png',
+  			part: 'Strap',
+  			print: 'Floral',
+  			style: 'Bandeau-Top',
+  		},
+  		customisationBottom: {
+  			product: 'bottom_bandeau_bottom_floral.png',
+  			part: 'Bottom',
+  			print: 'Floral',
+  			style: 'Bandeau-Bottom',
+  		}
+	};
+
+	var orderData = {
+		status: 'pending'
+	};
+
+
+	// DEFINE EVENT HANDLER FOR BUY BUTTON
 	$('#buy').on('click', function() {
 		console.log('buy button has been clicked');
+		
+	$.ajax({
+		  url: '/orders',
+		  type: 'post',
+		  data: {
+		    product: productData,
+		    customisations: customisationData,
+		    order: orderData
+		  }
+	}).done(function (status) {
+	  console.log(status);
+	});
+
 
 	// urls for ajax post requests:
 	// 1. /products to create new product
@@ -113,8 +169,7 @@ $(document).ready(function() {
 	// 4. /products/:id to update product
 	// 5. /orders/:id to update order
 
-
-
+	//{key1: 'value1', key:= 'value2'}
 	});
 });
 
