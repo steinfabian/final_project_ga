@@ -36,8 +36,7 @@ Order.create(:customer_id => 3, :status => 'completed', :total_price => 148.00)
 
 Part.create(:name => 'Cup')
 Part.create(:name => 'Strap')
-Part.create(:name => 'Front')
-Part.create(:name => 'Back')
+Part.create(:name => 'Bottom')
 
 Print.create(:name => 'Tropical', :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
 Print.create(:name => 'Ice-Cream', :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')

@@ -72,14 +72,17 @@ class OrdersController < ApplicationController
       :print_id => @bottom_cust_print_id, 
       :style_id => @bottom_cust_style_id)
 
-    # CREATE THE ORDER
+    # CREATE THE ORDER, ATTACH PRODUCTS, UPDATE PRICE
     @order = Order.create(:status => params['order']['status'])
     session[:order_id] = @order.id
     @order.products << @product_top 
     @order.products << @product_bottom
-    top_price = @product_top.update :price => @product_top.customisations.first.style.price
-    bottom_price = @product_bottom.update :price => @product_bottom.customisations.first.style.price
-    @order.update :total_price => top_price + bottom_price
+    @top_price = @product_top.customisations.first.style.price
+    @product_top.update :price => @top_price
+    @bottom_price = @product_bottom.customisations.first.style.price
+    @product_bottom.update :price => @bottom_price
+    @total_price = @top_price + @bottom_price
+    @order.update :total_price => @total_price
 
     if @current_customer.present?
       @order.update :customer_id => @current_customer.id
