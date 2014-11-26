@@ -16,9 +16,20 @@
 </p>
 
 <p>
-  <strong>Timestamps:</strong>
-  <%= @order.timestamps %>
+  <strong>Created at:</strong>
+  <%= @order.created_at %>
 </p>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
+
+<h2>Order summary</h2>
+
+<label class="checkout_label">Customer number: </label><%= @customer.id %></p>
+<label class="checkout_label">Name: </label><%= @customer.first_name %> <%= @customer.last_name %></p>
+<label class="checkout_label">Address: </label><%= @customer.address %></p>
+
+
+<%= form_tag '/complete' do %>
+<button class='btn btn-primary'>Buy Now</button>
+<% end %>

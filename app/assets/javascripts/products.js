@@ -10,22 +10,21 @@ $(document).ready(function() {
 	});
 });
 
-
+// UPDATE IMAGES BASED ON CUSTOMISATION
 $(document).ready(function() {
-	//DEFINE VARIABLES AND SET DEFAULT VALUES
+	// DEFINE VARIABLES AND SET DEFAULT VALUES
 	var styleTop = "bandeau";
 	var styleBottom = "bandeau";
-	var printCup = "retro";
+	var printCup = "floral";
 	var printStrap = "floral";
 	var printBottom = "floral";
 	var part = '';
 
-	//DEFINE VARIABLES THAT CREATE THE IMG SOURCE STRING
-	var imgTop = "/assets/top_" + styleTop + "_cup_" + printCup + "_strap_" + printStrap +".png";
-	var imgBottom = "/assets/bottom_" + styleBottom + "_bottom_" + printBottom +".png";
-
-	//DEFINE FUNCTION TO UPDATE THE SOURCE STRING OF THE TOP AND BOTTOM DISPLAY IMAGES BASED ON THE CUSTOMISATION
+	// DEFINE FUNCTION TO UPDATE THE SOURCE STRING OF THE TOP AND BOTTOM DISPLAY IMAGES BASED ON THE CUSTOMISATION
 	var updateImages = function() {
+		// DEFINE VARIABLES THAT CREATE THE IMG SOURCE STRING
+		var imgTop = "/assets/top_" + styleTop + "_cup_" + printCup + "_strap_" + printStrap +".png";
+		var imgBottom = "/assets/bottom_" + styleBottom + "_bottom_" + printBottom +".png";
 		$('#top-display').attr('src', imgTop);	
 		$('#bottom-display').attr('src', imgBottom);
 		console.log(imgTop);
@@ -34,7 +33,7 @@ $(document).ready(function() {
 
 	$(document.body)
 
-	//GET THE STYLE OF THE TOP
+	// GET THE STYLE OF THE TOP
 	.on('click', '#styles-display img.top', function(){
 		styleTop = $(this).attr('data-type');
 		console.log('a top style ' + styleTop + ' has been clicked');
@@ -42,7 +41,7 @@ $(document).ready(function() {
 		return styleTop;
 	})
 
-	//GET THE STYLE OF THE BOTTOM
+	// GET THE STYLE OF THE BOTTOM
 	.on('click', '#styles-display img.bottom', function(){
 		styleBottom = $(this).attr('data-type');
 		console.log('a bottom style ' + styleBottom + ' has been clicked');
@@ -50,14 +49,14 @@ $(document).ready(function() {
 		return styleBottom;
 	})
 
-	//GET THE PART THAT IS SELECTED FOR CUSTOMISATION (don't really need this now, but maybe later)
+	// GET THE PART THAT IS SELECTED FOR CUSTOMISATION (don't really need this now, but maybe later)
 	.on('click', '.dropdown-menu li', function(){
 		part = $('#dropdownMenu1').val();
 		console.log(part + ' li clicked');
 		return part;
 	})
 
-	//GET THE PRINT FOR EACH PART
+	// GET THE PRINT FOR EACH PART
 	.on('click', '.print', function(){
 		if ($('#dropdownMenu1').val() === "Cup") {
 			printCup = $(this).attr('data-type');
@@ -81,7 +80,7 @@ $(document).ready(function() {
 	})
 });
 
-//SHOW SELECTED PART DROPDOWN VALUE
+// SHOW SELECTED PART DROPDOWN VALUE
 $(function(){
     $(".dropdown-menu").on('click', 'li a', function(){
       $(".btn.dropdown-toggle:first-child").text($(this).text());

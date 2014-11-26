@@ -10,6 +10,8 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @customer = @current_customer
+    @order = Order.find session[:order_id]
   end
 
   # GET /orders/new
