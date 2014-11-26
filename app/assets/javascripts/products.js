@@ -37,6 +37,13 @@ $(document).ready(function() {
 	.on('click', '#styles-display img.top', function(){
 		styleTop = $(this).attr('data-type');
 		console.log('a top style ' + styleTop + ' has been clicked');
+		if (styleTop === 'triangle') {
+			printCup = 'geo';
+			printStrap = 'geo';
+		} else {
+			printCup = 'floral';
+			printStrap = 'floral';
+		} 
 		updateImages();
 		return styleTop;
 	})
@@ -45,6 +52,11 @@ $(document).ready(function() {
 	.on('click', '#styles-display img.bottom', function(){
 		styleBottom = $(this).attr('data-type');
 		console.log('a bottom style ' + styleBottom + ' has been clicked');
+		if (styleBottom === 'triangle') {
+			printBottom = 'geo';
+		} else {
+			printBottom = 'floral';
+		} 
 		updateImages();
 		return styleBottom;
 	})
