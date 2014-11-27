@@ -84,13 +84,6 @@ class OrdersController < ApplicationController
     @order.update :total_price => @total_price
     # @current_customer.orders << @order
 
-    # if @current_customer.present?
-    #   @order.update :customer_id => @current_customer.id
-    #   redirect_to order_path session[:order_id]
-    # else
-    #   redirect_to login_path
-    # end
-
     if @current_customer.present?
       destination = order_path @order
     else

@@ -52,6 +52,22 @@ $(document).ready(function() {
 		console.log(imgBottom);
 	};
 
+	// DEFINE FUNCTION TO HIDE PRINTS THAT CANNOT BE APPLIED TO A STYLE / PART
+	var hidePrints = function() {
+		//1. Select all images that have a class print-thumbnail and save in array
+		var printImages = $('.print-thumbnail');
+		_.each(printImages, function (image) {
+			if (image.hasClass('bandeau')) {
+				console.log('image has class bandeau');
+			}
+
+		});
+		//2. If styleTop === 'bandeau' && li of ul with class dropdown-menu hasClass 'top', then addClass 'hide' to all img without class 'bandeau'
+		//3. If styleTop === 'triangle' && li of ul with class dropdown-menu hasClass 'bottom', then addClass 'hide' to all img without class 'triangle'
+	};
+
+	hidePrints();
+
 	$(document.body)
 
 	// GET THE STYLE OF THE TOP
@@ -176,63 +192,3 @@ $(document).ready(function() {
 
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-// HIDE PRINTS THAT CANNOT BE APPIED TO THE SELECTED STYLE
-
-
-
-
-		// switch ($(this)) {
-		// 	case $(this).hasClass('style') && $(this).hasClass('top'):
-		// 		styleTop = $(this).attr('data-type');
-		// 		console.log($(this).attr('data-type'));
-		// 	case $(this).hasClass('style') && $(this).hasClass('bottom'):
-		// 		styleBottom = $(this).attr('data-type');
-		// 		console.log($(this).attr('data-type'));
-		// 	default:
-		// 		console.log('default');
-
-
-		// .on('click', '.customisation-display img', function() {
-
-		// 	if ($(this).hasClass('style') && $(this).hasClass('top')) {
-		// 		styleTop = $(this).attr('data-type');
-		// 		console.log($(this).attr('data-type'));
-		// 	};
-
-		// 	if ($(this).hasClass('style') && $(this).hasClass('bottom')) {
-		// 		styleBottom = $(this).attr('data-type');
-		// 		console.log($(this).attr('data-type'));
-		// 	};
-
-		// 	if ($(this).hasClass('print')) {
-		// 		printCup = $(this).attr('data-type');
-		// 		printStrap = $(this).attr('data-type');
-		// 		printBottom = $(this).attr('data-type');
-		// 	};
-
-
-		// 	})
-
-// 	$(document).ready(function () {
-// 		$('#customiser-tabs a').click(function (e) {
-// 		  e.preventDefault();
-// 		  $('#customiser-tabs a[href="#styles-display"]').tab('show'); // Select tab by name
-// 		  $('#customiser-tabs a[href="#prints-display"]').tab('show'); // Select tab by name
-// 		});
-// 	    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-// 		  e.target; // newly activated tab
-// 		  e.relatedTarget; // previous active tab
-// 		});
-// 	});
