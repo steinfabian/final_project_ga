@@ -19,8 +19,11 @@
   <tr>
     <th>Order number</th>
     <th>Date</th>
-    <th>Products</th>
-
+    <th>Top style</th>
+    <th>Cup print</th>
+    <th>Strap print</th>
+    <th>Bottom style</th>
+    <th>Price</th>
 
   </tr>
   <% @order_list.each do |order| %>
@@ -28,6 +31,7 @@
     <th><%= order.id %></th>
     <th><%= order.created_at.strftime('%d %B %Y') %></th>
     <th><%= order.products.first %></th>
+
   <%end%>
   </tr>
 </table>
