@@ -101,7 +101,7 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find params[:id]
     @order.update :status => 'completed'
-    # @customer.orders << @order
+    @current_customer.orders << @order
     redirect_to customer_path @current_customer
 
   end
