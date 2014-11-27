@@ -1,34 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @customer.email %>
-</p>
-
-<p>
-  <strong>Password digest:</strong>
-  <%= @customer.password_digest %>
-</p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @customer.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @customer.last_name %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @customer.address %>
-</p>
-
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
-
-
 <h2>Hi <%= @customer.first_name %>!</h2>
 
 <h3>These are your account details:</h3>
@@ -45,6 +14,23 @@
 <!-- List orders. Find orders with this customer ID and display Order ID, date, and order specifications-->
 
 <!-- get table from project 1 -->
+
+<table class="table">
+  <tr>
+    <th>Order number</th>
+    <th>Date</th>
+    <th>Products</th>
+
+
+  </tr>
+  <% @order_list.each do |order| %>
+    <tr>
+    <th><%= order.id %></th>
+    <th><%= order.created_at.strftime('%d %B %Y') %></th>
+    <th><%= order.products.first %></th>
+  <%end%>
+  </tr>
+</table>
 
 
 

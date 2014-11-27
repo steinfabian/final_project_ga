@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_customer, only: [:show]
+  before_action :authorise_customer, only: [:show]
 
   # GET /customers
   # GET /customers.json
@@ -11,7 +11,8 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
-    @order_list = @current_customer.orders.where(:status => "confirmed")
+    
+    @order_list = @current_customer.orders.where(:status => "completed")
   end
 
   # GET /customers/new
@@ -29,7 +30,6 @@ class CustomersController < ApplicationController
     @customer = Customer.create(customer_params)
 
     session[:customer_id] = @customer.id
-
     order = Order.find_by :id => session[:order_id]
     if order.present?
       @customer.orders << order
@@ -69,7 +69,7 @@ class CustomersController < ApplicationController
       @customer = Customer.find(params[:id])
     end
 
-    def authenticate_customer
+    def authorise_customer
       redirect_to login_path unless @current_customer.present?
     end
 

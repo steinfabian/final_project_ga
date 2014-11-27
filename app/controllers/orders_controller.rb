@@ -82,6 +82,7 @@ class OrdersController < ApplicationController
     @product_bottom.update :price => @bottom_price
     @total_price = @top_price + @bottom_price
     @order.update :total_price => @total_price
+    @current_customer.orders << @order
 
     # if @current_customer.present?
     #   @order.update :customer_id => @current_customer.id
@@ -105,15 +106,11 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order }
-      else
-        format.html { render :edit }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
+    @order = Order.find params[:id]
+    @order.update :status => 'completed'
+    # @customer.orders << @order
+    redirect_to customer_path @current_customer
+
   end
 
   # DELETE /orders/1
