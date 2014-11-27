@@ -7,6 +7,14 @@ $(document).ready(function () {
 	});
 });
 
+// SHOW SELECTED PART DROPDOWN VALUE
+$(function(){
+    $(".dropdown-menu").on('click', 'li a', function(){
+      $(".btn.dropdown-toggle:first-child").text($(this).text());
+      $(".btn.dropdown-toggle:first-child").val($(this).text());
+   });
+});
+
 // MAKE TABS TOGGLEABLE
 $(document).ready(function() {
 	$('#styles-tab').on('click', function() {
@@ -29,13 +37,17 @@ $(document).ready(function() {
 	var printBottom = "floral";
 	var part;
 
+	var imgTop;
+	var imgBottom;
+
 	// DEFINE FUNCTION TO UPDATE THE SOURCE STRING OF THE TOP AND BOTTOM DISPLAY IMAGES BASED ON THE CUSTOMISATION
 	var updateImages = function() {
 		// DEFINE VARIABLES THAT CREATE THE IMG SOURCE STRING
-		var imgTop = "/assets/top_" + styleTop + "_cup_" + printCup + "_strap_" + printStrap +".png";
-		var imgBottom = "/assets/bottom_" + styleBottom + "_bottom_" + printBottom +".png";
-		$('#top-display').attr('src', imgTop);	
-		$('#bottom-display').attr('src', imgBottom);
+		// debugger;
+		imgTop = "top_" + styleTop + "_cup_" + printCup + "_strap_" + printStrap +".png";
+		imgBottom = "bottom_" + styleBottom + "_bottom_" + printBottom +".png";
+		$('#top-display').attr('src', '/assets/' + imgTop);	
+		$('#bottom-display').attr('src', '/assets/' + imgBottom);
 		console.log(imgTop);
 		console.log(imgBottom);
 	};
@@ -99,88 +111,79 @@ $(document).ready(function() {
 			alert('Which part to you want to apply the print to? Select the part from the drop down menu');
 		}
 	})
-});
-
-// SHOW SELECTED PART DROPDOWN VALUE
-$(function(){
-    $(".dropdown-menu").on('click', 'li a', function(){
-      $(".btn.dropdown-toggle:first-child").text($(this).text());
-      $(".btn.dropdown-toggle:first-child").val($(this).text());
-   });
-});
 
 
 
-$(document).ready(function() {
-
-	var status = "The ajax request is completed."
-
-	// DEFINE DATA COLLECTIONS TO POST TO SERVER
-	var productData = [
-	  {
-	    kind: 'top',
-	    image: 'top_bandeau_cup_floral_strap_floral.png'
-	  },
-	  {
-	    kind: 'bottom',
-	    image: 'bottom_bandeau_bottom_floral.png'
-	  }
-	];
-
-	var customisationData = {
-  		customisationCup: {
-  			product: 'top_bandeau_cup_floral_strap_floral.png',
-  			part: 'cup',
-  			print: 'floral',
-  			style: 'bandeau',
-  			// in rails: style_id = Style.find_by(:name => params[:customisation][:style]).id
-  		},
-  		customisationStrap: {
-  			product: 'top_bandeau_cup_floral_strap_floral.png',
-  			part: 'strap',
-  			print: 'floral',
-  			style: 'bandeau',
-  		},
-  		customisationBottom: {
-  			product: 'bottom_bandeau_bottom_floral.png',
-  			part: 'bottom',
-  			print: 'floral',
-  			style: 'bandeau',
-  		}
-	};
-
-	var orderData = {
-		status: 'pending'
-	};
-
+	
 
 	// DEFINE EVENT HANDLER FOR BUY BUTTON
 	$('#buy').on('click', function() {
 		console.log('buy button has been clicked');
-		
-	$.ajax({
-		  url: '/orders',
-		  type: 'post',
-		  data: {
-		    product: productData,
-		    customisations: customisationData,
-		    order: orderData
+		// debugger;
+	
+		// DEFINE DATA COLLECTIONS TO POST TO SERVER
+		var productData = [
+		  {
+		    kind: 'top',
+		    image: imgTop
+		  },
+		  {
+		    kind: 'bottom',
+		    image: imgBottom
 		  }
-	}).done(function (status) {
-	  console.log(status);
+		];
+
+		var customisationData = {
+	  		customisationCup: {
+	  			product: imgTop,
+	  			part: 'cup',
+	  			print: printCup,
+	  			style: styleTop
+	  		},
+	  		customisationStrap: {
+	  			product: imgTop,
+	  			part: 'strap',
+	  			print: printStrap,
+	  			style: styleTop,
+	  		},
+	  		customisationBottom: {
+	  			product: imgBottom,
+	  			part: 'bottom',
+	  			print: printBottom,
+	  			style: styleBottom,
+	  		}
+		};
+
+		var orderData = {
+			status: 'pending'
+		};
+
+
+		$.ajax({
+			  url: '/orders',
+			  type: 'post',
+			  data: {
+			    product: productData,
+			    customisations: customisationData,
+			    order: orderData
+			  }
+		}).done(function (status) {
+		  console.log(status);
+		  window.location = status.destination;
+		});
+
 	});
 
-
-	// urls for ajax post requests:
-	// 1. /products to create new product
-	// 2. /customisations to create new customisation record
-	// 3. /orders to create new order
-	// 4. /products/:id to update product
-	// 5. /orders/:id to update order
-
-	//{key1: 'value1', key:= 'value2'}
-	});
 });
+
+
+
+
+
+
+
+
+
 
 
 

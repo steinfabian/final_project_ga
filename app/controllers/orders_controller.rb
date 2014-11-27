@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   def show
     @customer = @current_customer
     @order = Order.find_by :id => params[:id]
-    redirect_to root_path unless @customer.present? && @order.try(:customer_id) == @customer.try(:id)
+    redirect_to root_path unless @customer.present? # && @order.try(:customer_id) == @customer.try(:id)
   end
 
   # GET /orders/new
@@ -83,23 +83,23 @@ class OrdersController < ApplicationController
     @total_price = @top_price + @bottom_price
     @order.update :total_price => @total_price
 
+    # if @current_customer.present?
+    #   @order.update :customer_id => @current_customer.id
+    #   redirect_to order_path session[:order_id]
+    # else
+    #   redirect_to login_path
+    # end
+
     if @current_customer.present?
-      @order.update :customer_id => @current_customer.id
-      redirect_to order_path session[:order_id]
+      destination = order_path @order
     else
-      redirect_to login_path
+      destination = login_path
     end
 
+    render :json => {
+      :destination => destination
+    }
 
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /orders/1
