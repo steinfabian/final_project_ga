@@ -82,7 +82,7 @@ class OrdersController < ApplicationController
     @product_bottom.update :price => @bottom_price
     @total_price = @top_price + @bottom_price
     @order.update :total_price => @total_price
-    @current_customer.orders << @order
+    # @current_customer.orders << @order
 
     # if @current_customer.present?
     #   @order.update :customer_id => @current_customer.id

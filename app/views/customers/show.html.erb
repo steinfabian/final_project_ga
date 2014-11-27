@@ -1,40 +1,55 @@
-<h2>Hi <%= @customer.first_name %>!</h2>
+<div class="container">
+  
+  <br>
+  <h2>Hi <%= @customer.first_name %>!</h2>
+  <br>
+  <h3>These are your account details:</h3>
+  <br>
+  <div class="container">
+    <label class="checkout_label">Customer number:</label> <%= @customer.id %></p>
+    <label class="checkout_label">First name:</label> <%= @customer.first_name %></p>
+    <label class="checkout_label">Last name:</label> <%= @customer.last_name %></p>
+    <label class="checkout_label">Email:</label> <%= @customer.email %></p>
+    <label class="checkout_label">Address:</label> <%= @customer.address%></p>
 
-<h3>These are your account details:</h3>
+    <%= link_to 'Edit', edit_customer_path(@customer), :class => "help-block" %>
+  </div>
+  
+  <br>
+  <h3>These are your past orders:</h3>
+  <br>
+  <div class="container">
+    <table class="table">
+      <tr>
+        <th>Order number</th>
+        <th>Date</th>
+        <th>Top style</th>
+        <th>Cup print</th>
+        <th>Strap print</th>
+        <th>Top price</th>
+        <th>Bottom style</th>
+        <th>Bottom print</th>
+        <th>Bottom Price</th>
+        <th>Total Price</th>
 
-<label class="checkout_label">Customer number:</label> <%= @customer.id %></p>
-<label class="checkout_label">First name:</label> <%= @customer.first_name %></p>
-<label class="checkout_label">Last name:</label> <%= @customer.last_name %></p>
-<label class="checkout_label">Email:</label> <%= @customer.email %></p>
-<label class="checkout_label">Address:</label> <%= @customer.address%></p>
-
-<%= link_to 'Edit', edit_customer_path(@customer), :class => "help-block" %>
-
-<h3>These are your past orders:</h3>
-<!-- List orders. Find orders with this customer ID and display Order ID, date, and order specifications-->
-
-<!-- get table from project 1 -->
-
-<table class="table">
-  <tr>
-    <th>Order number</th>
-    <th>Date</th>
-    <th>Top style</th>
-    <th>Cup print</th>
-    <th>Strap print</th>
-    <th>Bottom style</th>
-    <th>Price</th>
-
-  </tr>
-  <% @order_list.each do |order| %>
-    <tr>
-    <th><%= order.id %></th>
-    <th><%= order.created_at.strftime('%d %B %Y') %></th>
-    <th><%= order.products.first %></th>
-
-  <%end%>
-  </tr>
-</table>
+      </tr>
+      <% @order_list.each do |order| %>
+        <tr>
+        <th><%= order.id %></th>
+        <th><%= order.created_at.strftime('%d %B %Y') %></th>
+        <th><%= order.products.first.customisations.first.style.name.capitalize %></th>
+        <th><%= order.products.first.customisations.first.print.name.capitalize %></th>
+        <th><%= order.products.first.customisations[1].print.name.capitalize %></th>
+        <th>$<%= order.products.first.price %>0</th>
+        <th><%= order.products[1].customisations.first.style.name.capitalize %></th>
+        <th><%= order.products[1].customisations.first.print.name.capitalize %></th>
+        <th>$<%= order.products[1].price %>0</th>
+        <th>$<%= order.total_price %>0</th>
 
 
+      <%end%>
+      </tr>
+    </table>
+  </div>
+</div>
 
