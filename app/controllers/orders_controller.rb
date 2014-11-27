@@ -11,7 +11,8 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @customer = @current_customer
-    @order = Order.find session[:order_id]
+    @order = Order.find_by :id => params[:id]
+    redirect_to root_path unless @customer.present? && @order.try(:customer_id) == @customer.try(:id)
   end
 
   # GET /orders/new
@@ -26,8 +27,6 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    binding.pry
-    
     # CREATE TWO PRODUCTS: TOP AND BOTTOM
     #find the values for kind and image for the top product from the params and consider them when creating the product
     @kind_top = params['product']['0']['kind']
@@ -40,10 +39,10 @@ class OrdersController < ApplicationController
 
     # CREATE THREE CUSTOMISATIONS: CUP AND STRAP FOR THE TOP PRODUCT PLUS BOTTOM FOR THE BOTTOM PRODUCT
     #find the ids of each parameter of the CUP customisation by getting the params and looking up the respective ids
-    @cup_cust_product_id = Product.find_by(:image => params['customisations']['customisationCup']['product'])['id']
+    @cup_cust_product_id = @product_top.id
     @cup_cust_part_id = Part.find_by(:name => params['customisations']['customisationCup']['part'])['id']
     @cup_cust_print_id = Print.find_by(:name => params['customisations']['customisationCup']['print'])['id']
-    @cup_cust_style_id = Style.find_by(:name => params['customisations']['customisationCup']['style'])['id']
+    @cup_cust_style_id = Style.find_by(:name => params['customisations']['customisationCup']['style'], :kind => 'top')['id']
     @customisation_cup = Customisation.create(
       :product_id => @cup_cust_product_id, 
       :part_id => @cup_cust_part_id, 
@@ -51,10 +50,10 @@ class OrdersController < ApplicationController
       :style_id => @cup_cust_style_id)
 
     #STRAP
-    @strap_cust_product_id = Product.find_by(:image => params['customisations']['customisationStrap']['product'])['id']
+    @strap_cust_product_id = @product_top.id
     @strap_cust_part_id = Part.find_by(:name => params['customisations']['customisationStrap']['part'])['id']
     @strap_cust_print_id = Print.find_by(:name => params['customisations']['customisationStrap']['print'])['id']
-    @strap_cust_style_id = Style.find_by(:name => params['customisations']['customisationStrap']['style'])['id']
+    @strap_cust_style_id = Style.find_by(:name => params['customisations']['customisationStrap']['style'], :kind => 'top')['id']
     @customisation_strap = Customisation.create(
       :product_id => @strap_cust_product_id, 
       :part_id => @strap_cust_part_id, 
@@ -62,10 +61,10 @@ class OrdersController < ApplicationController
       :style_id => @strap_cust_style_id)
 
     #BOTTOM
-    @bottom_cust_product_id = Product.find_by(:image => params['customisations']['customisationBottom']['product'])['id']
+    @bottom_cust_product_id = @product_bottom.id
     @bottom_cust_part_id = Part.find_by(:name => params['customisations']['customisationBottom']['part'])['id']
     @bottom_cust_print_id = Print.find_by(:name => params['customisations']['customisationBottom']['print'])['id']
-    @bottom_cust_style_id = Style.find_by(:name => params['customisations']['customisationBottom']['style'])['id']   
+    @bottom_cust_style_id = Style.find_by(:name => params['customisations']['customisationBottom']['style'], :kind => 'bottom')['id']   
     @customisation_bottom = Customisation.create(
       :product_id => @bottom_cust_product_id, 
       :part_id => @bottom_cust_part_id, 
@@ -91,10 +90,7 @@ class OrdersController < ApplicationController
       redirect_to login_path
     end
 
-    
-    
 
-    binding.pry
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -104,7 +100,6 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
-    binding.pry
   end
 
   # PATCH/PUT /orders/1

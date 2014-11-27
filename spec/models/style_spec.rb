@@ -9,6 +9,7 @@
 #  image      :text
 #  created_at :datetime
 #  updated_at :datetime
+#  kind       :string(255)
 #
 
 require 'rails_helper'

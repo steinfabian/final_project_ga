@@ -15,40 +15,40 @@ Product.destroy_all
 Style.destroy_all
 
 
-Customer.create(:email => "fabian@fabian", :password_digest => 'fabian', :first_name => 'fabian', :last_name => 'test', :address => 'test address')
-Customer.create(:email => "leonie@leonie", :password_digest => 'leonie', :first_name => 'leonie', :last_name => 'test', :address => 'test address')
-Customer.create(:email => "farina@farina", :password_digest => 'farina', :first_name => 'farina', :last_name => 'test', :address => 'test address')
+Customer.create(:email => "fabian@fabian", :password => 'fabian', :password_confirmation => 'fabian', :first_name => 'fabian', :last_name => 'test', :address => 'test address')
+Customer.create(:email => "leonie@leonie", :password => 'leonie', :password_confirmation => 'leonie', :first_name => 'leonie', :last_name => 'test', :address => 'test address')
+Customer.create(:email => "farina@farina", :password => 'farina', :password_confirmation => 'farina', :first_name => 'farina', :last_name => 'test', :address => 'test address')
 
 
 
-Product.create(:kind => 'Top', :name => 'hard coded bandeau', :size => 'M', :order_id => 1, :image => 'bandeau_top_floral.png', :price => 89.00)
-Product.create(:kind => 'Bottom', :name => 'hard coded bandeau', :size => 'L', :order_id => 1, :image => 'bandeau_bottom_floral.png', :price => 59.00)
-Product.create(:kind => 'Top', :name => 'hard coded bandeau', :size => 'S', :order_id => 2, :image => 'bandeau_top_floral.png', :price => 89.00)
-Product.create(:kind => 'Bottom', :name => 'hard coded bandeau', :size => 'S', :order_id => 2, :image => 'bandeau_bottom_floral.png', :price => 59.00)
-Product.create(:kind => 'Top', :name => 'hard coded bandeau', :size => 'L', :order_id => 3, :image => 'bandeau_top_floral.png', :price => 89.00)
-Product.create(:kind => 'Bottom', :name => 'hard coded bandeau', :size => 'M', :order_id => 3, :image => 'bandeau_bottom_floral.png', :price => 59.00)
+Product.create(:kind => 'top', :name => 'hard coded bandeau', :size => 'M', :order_id => 1, :image => 'bandeau_top_floral.png', :price => 89.00)
+Product.create(:kind => 'bottom', :name => 'hard coded bandeau', :size => 'L', :order_id => 1, :image => 'bandeau_bottom_floral.png', :price => 59.00)
+Product.create(:kind => 'top', :name => 'hard coded bandeau', :size => 'S', :order_id => 2, :image => 'bandeau_top_floral.png', :price => 89.00)
+Product.create(:kind => 'bottom', :name => 'hard coded bandeau', :size => 'S', :order_id => 2, :image => 'bandeau_bottom_floral.png', :price => 59.00)
+Product.create(:kind => 'top', :name => 'hard coded bandeau', :size => 'L', :order_id => 3, :image => 'bandeau_top_floral.png', :price => 89.00)
+Product.create(:kind => 'bottom', :name => 'hard coded bandeau', :size => 'M', :order_id => 3, :image => 'bandeau_bottom_floral.png', :price => 59.00)
 
 
 Order.create(:customer_id => 1, :status => 'completed', :total_price => 148.00)
-Order.create(:customer_id => 2, :status => 'in_progress', :total_price => 148.00)
+Order.create(:customer_id => 2, :status => 'pending', :total_price => 148.00)
 Order.create(:customer_id => 3, :status => 'completed', :total_price => 148.00)
 
 
-Part.create(:name => 'Cup')
-Part.create(:name => 'Strap')
-Part.create(:name => 'Bottom')
+Part.create(:name => 'cup')
+Part.create(:name => 'strap')
+Part.create(:name => 'bottom')
 
-Print.create(:name => 'Tropical', :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
-Print.create(:name => 'Ice-Cream', :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
-Print.create(:name => 'Retro', :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
-Print.create(:name => 'Pineapple', :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
-Print.create(:name => 'Floral', :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
-Print.create(:name => 'Geo', :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
+Print.create(:name => 'tropical', :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
+Print.create(:name => 'ice-cream', :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
+Print.create(:name => 'retro', :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
+Print.create(:name => 'pineapple', :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
+Print.create(:name => 'floral', :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
+Print.create(:name => 'geo', :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
 
-Style.create(:name => 'Bandeau-Top', :price => 89.00, :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
-Style.create(:name => 'Triangle-Top', :price => 89.00, :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
-Style.create(:name => 'Bandeau-Bottom', :price => 59.00, :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
-Style.create(:name => 'Triangle-Bottom', :price => 59.00, :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
+Style.create(:name => 'bandeau', :kind => 'top', :price => 89.00, :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
+Style.create(:name => 'triangle', :kind => 'top', :price => 89.00, :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
+Style.create(:name => 'bandeau', :kind => 'bottom', :price => 59.00, :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
+Style.create(:name => 'triangle', :kind => 'bottom', :price => 59.00, :thumbnail => 'bandeau_top_floral.png', :image => 'bandeau_top_floral.png')
 
 Customisation.create(:product_id => 1, :part_id => 1, :print_id => 1, :style_id => 1)
 Customisation.create(:product_id => 1, :part_id => 2, :print_id => 1, :style_id => 1)

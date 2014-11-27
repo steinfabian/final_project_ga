@@ -1,3 +1,12 @@
+$(document).ready(function () {
+	var token = $('meta[name="csrf-token"]').attr('content');
+	$.ajaxSetup({
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader('X-CSRF-Token', token);
+		}
+	});
+});
+
 // MAKE TABS TOGGLEABLE
 $(document).ready(function() {
 	$('#styles-tab').on('click', function() {
@@ -109,11 +118,11 @@ $(document).ready(function() {
 	// DEFINE DATA COLLECTIONS TO POST TO SERVER
 	var productData = [
 	  {
-	    kind: 'Top',
+	    kind: 'top',
 	    image: 'top_bandeau_cup_floral_strap_floral.png'
 	  },
 	  {
-	    kind: 'Bottom',
+	    kind: 'bottom',
 	    image: 'bottom_bandeau_bottom_floral.png'
 	  }
 	];
@@ -121,22 +130,22 @@ $(document).ready(function() {
 	var customisationData = {
   		customisationCup: {
   			product: 'top_bandeau_cup_floral_strap_floral.png',
-  			part: 'Cup',
-  			print: 'Floral',
-  			style: 'Bandeau-Top',
+  			part: 'cup',
+  			print: 'floral',
+  			style: 'bandeau',
   			// in rails: style_id = Style.find_by(:name => params[:customisation][:style]).id
   		},
   		customisationStrap: {
   			product: 'top_bandeau_cup_floral_strap_floral.png',
-  			part: 'Strap',
-  			print: 'Floral',
-  			style: 'Bandeau-Top',
+  			part: 'strap',
+  			print: 'floral',
+  			style: 'bandeau',
   		},
   		customisationBottom: {
   			product: 'bottom_bandeau_bottom_floral.png',
-  			part: 'Bottom',
-  			print: 'Floral',
-  			style: 'Bandeau-Bottom',
+  			part: 'bottom',
+  			print: 'floral',
+  			style: 'bandeau',
   		}
 	};
 
