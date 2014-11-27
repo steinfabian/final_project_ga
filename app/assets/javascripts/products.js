@@ -52,21 +52,24 @@ $(document).ready(function() {
 		console.log(imgBottom);
 	};
 
+	
+
 	// DEFINE FUNCTION TO HIDE PRINTS THAT CANNOT BE APPLIED TO A STYLE / PART
-	var hidePrints = function() {
-		//1. Select all images that have a class print-thumbnail and save in array
-		var printImages = $('.print-thumbnail');
-		_.each(printImages, function (image) {
-			if (image.hasClass('bandeau')) {
-				console.log('image has class bandeau');
-			}
+	// var hidePrints = function() {
+	// // 	//1. Select all images that have a class print-thumbnail and save in array
+	// 	var printImages = $('.print-thumbnail');
+	// 	//2. If styleTop === 'bandeau' && li of ul with class dropdown-menu hasClass 'top', then addClass 'hide' to all img without class 'bandeau'		
+	// 	printImages.each(function (i, image) {
+	// 		if ((!$(image).hasClass('bandeau')) && (part === 'Cup' || 'Strap')) {
+	// 			console.log('image has class bandeau and the selected part is Cup');
+	// 			$(image).addClass('hide');
+	// 		}
+	// 	//3. If styleTop === 'triangle' && li of ul with class dropdown-menu hasClass 'bottom', then addClass 'hide' to all img without class 'triangle'
+	// 	});
+	// };
 
-		});
-		//2. If styleTop === 'bandeau' && li of ul with class dropdown-menu hasClass 'top', then addClass 'hide' to all img without class 'bandeau'
-		//3. If styleTop === 'triangle' && li of ul with class dropdown-menu hasClass 'bottom', then addClass 'hide' to all img without class 'triangle'
-	};
 
-	hidePrints();
+	
 
 	$(document.body)
 
@@ -102,6 +105,7 @@ $(document).ready(function() {
 	.on('click', '.dropdown-menu li', function(){
 		part = $('#dropdownMenu1').val();
 		console.log(part + ' li clicked');
+		// hidePrints();
 		return part;
 	})
 

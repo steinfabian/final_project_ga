@@ -76,3 +76,8 @@
 	</div>
 </div>
 
+
+<% Dir.glob('app/assets/images/*').each do |img| %>
+	<link rel="prefetch" href="/assets/<%= img.split('/').last %>">
+<% end %>
+
