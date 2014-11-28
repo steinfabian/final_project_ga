@@ -1,3 +1,4 @@
+// Get token from site to authenticate ajax requests with server
 $(document).ready(function () {
 	var token = $('meta[name="csrf-token"]').attr('content');
 	$.ajaxSetup({
@@ -5,14 +6,6 @@ $(document).ready(function () {
 			xhr.setRequestHeader('X-CSRF-Token', token);
 		}
 	});
-});
-
-// SHOW SELECTED PART DROPDOWN VALUE
-$(function(){
-    $(".dropdown-menu").on('click', 'li a', function(){
-      $(".btn.dropdown-toggle:first-child").text($(this).text());
-      $(".btn.dropdown-toggle:first-child").val($(this).text());
-   });
 });
 
 // MAKE TABS TOGGLEABLE
@@ -25,6 +18,14 @@ $(document).ready(function() {
 		$('#prints-display').toggleClass('hide');
 		$('#styles-display').toggleClass('hide');
 	});
+});
+
+// SHOW SELECTED PART DROPDOWN VALUE
+$(function(){
+    $(".dropdown-menu").on('click', 'li a', function(){
+      $(".btn.dropdown-toggle:first-child").text($(this).text());
+      $(".btn.dropdown-toggle:first-child").val($(this).text());
+   });
 });
 
 // UPDATE IMAGES BASED ON CUSTOMISATION
@@ -52,16 +53,16 @@ $(document).ready(function() {
 		console.log(imgBottom);
 	};
 
-	// DEFINE FUNCTION THAT RESETS THE PART DROPDOWN WHEN NEW STYLE IS SELECTED
-	var resetPart = function() {
-		$('#dropdownMenu1').removeAttr('value'); // NOT WORKING YET
-	}
+	// // DEFINE FUNCTION THAT RESETS THE PART DROPDOWN WHEN NEW STYLE IS SELECTED
+	// var resetPart = function() {
+	// 	$('#dropdownMenu1').removeAttr('value'); // NOT WORKING YET
+	// }
 
 	// DEFINE FUNCTION TO HIDE PRINTS THAT CANNOT BE APPLIED TO A STYLE / PART
 	var hidePrints = function() {
 	// 	//1. Select all images that have a class print-thumbnail and save in array
 		var printImages = $('.print-thumbnail');
-		//2. Go through all those images and add a class "hide" if they are not supposed to show up (e.g. when 'bandeau' is selected as style, hid the prints that don't have a class 'bandeau')	
+		//2. Go through all those images and add a class "hide" if they are not supposed to show up (e.g. when 'bandeau' is selected as style, hide the prints that don't have a class 'bandeau')	
 		printImages.each(function (i, image) {
 			$(image).removeClass('hide');
 			if (
@@ -99,8 +100,6 @@ $(document).ready(function() {
 	};
 
 
-	
-
 	$(document.body)
 
 	// GET THE STYLE OF THE TOP
@@ -115,7 +114,7 @@ $(document).ready(function() {
 			printStrap = 'floral';
 		} 
 		updateImages();
-		resetPart();
+		// resetPart();
 		hidePrints();
 		return styleTop;
 	})
@@ -130,7 +129,7 @@ $(document).ready(function() {
 			printBottom = 'floral';
 		} 
 		updateImages();
-		resetPart();
+		// resetPart();
 		hidePrints();
 		return styleBottom;
 	})
