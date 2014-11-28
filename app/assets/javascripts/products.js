@@ -52,21 +52,51 @@ $(document).ready(function() {
 		console.log(imgBottom);
 	};
 
-	
+	// DEFINE FUNCTION THAT RESETS THE PART DROPDOWN WHEN NEW STYLE IS SELECTED
+	var resetPart = function() {
+		$('#dropdownMenu1').removeAttr('value'); // NOT WORKING YET
+	}
 
 	// DEFINE FUNCTION TO HIDE PRINTS THAT CANNOT BE APPLIED TO A STYLE / PART
-	// var hidePrints = function() {
-	// // 	//1. Select all images that have a class print-thumbnail and save in array
-	// 	var printImages = $('.print-thumbnail');
-	// 	//2. If styleTop === 'bandeau' && li of ul with class dropdown-menu hasClass 'top', then addClass 'hide' to all img without class 'bandeau'		
-	// 	printImages.each(function (i, image) {
-	// 		if ((!$(image).hasClass('bandeau')) && (part === 'Cup' || 'Strap')) {
-	// 			console.log('image has class bandeau and the selected part is Cup');
-	// 			$(image).addClass('hide');
-	// 		}
-	// 	//3. If styleTop === 'triangle' && li of ul with class dropdown-menu hasClass 'bottom', then addClass 'hide' to all img without class 'triangle'
-	// 	});
-	// };
+	var hidePrints = function() {
+	// 	//1. Select all images that have a class print-thumbnail and save in array
+		var printImages = $('.print-thumbnail');
+		//2. Go through all those images and add a class "hide" if they are not supposed to show up (e.g. when 'bandeau' is selected as style, hid the prints that don't have a class 'bandeau')	
+		printImages.each(function (i, image) {
+			$(image).removeClass('hide');
+			if (
+				(styleTop === 'bandeau') && 
+				(
+					((!$(image).hasClass('bandeau')) && (part === 'Cup')) || 
+					((!$(image).hasClass('bandeau')) && (part === 'Strap'))
+				) 
+				) {
+				console.log('image has style ' + styleTop + ', class bandeau and the selected part is Cup or Strap');
+				$(image).addClass('hide');
+			} else if (
+				(styleBottom === 'bandeau') &&
+				((!$(image).hasClass('bandeau')) && (part === 'Bottom'))
+				) {
+				console.log('image has style ' + styleBottom + ', class bandeau and the selected part is Bottom');
+				$(image).addClass('hide');
+			} else if (
+				(styleTop === 'triangle') && 
+				(
+					((!$(image).hasClass('triangle')) && (part === 'Cup')) || 
+					((!$(image).hasClass('triangle')) && (part === 'Strap'))
+				) 
+				) {
+				console.log('image has style ' + styleTop + ', class triangle and the selected part is Cup or Strap');
+				$(image).addClass('hide');
+			} else if (
+				(styleBottom === 'triangle') &&
+				((!$(image).hasClass('triangle')) && (part === 'Bottom'))
+				) {
+				console.log('image has style ' + styleBottom + ', class triangle and the selected part is Bottom');
+				$(image).addClass('hide');
+			}
+		});
+	};
 
 
 	
@@ -85,6 +115,8 @@ $(document).ready(function() {
 			printStrap = 'floral';
 		} 
 		updateImages();
+		resetPart();
+		hidePrints();
 		return styleTop;
 	})
 
@@ -98,6 +130,8 @@ $(document).ready(function() {
 			printBottom = 'floral';
 		} 
 		updateImages();
+		resetPart();
+		hidePrints();
 		return styleBottom;
 	})
 
@@ -105,7 +139,7 @@ $(document).ready(function() {
 	.on('click', '.dropdown-menu li', function(){
 		part = $('#dropdownMenu1').val();
 		console.log(part + ' li clicked');
-		// hidePrints();
+		hidePrints();
 		return part;
 	})
 
@@ -131,10 +165,6 @@ $(document).ready(function() {
 			alert('Which part to you want to apply the print to? Select the part from the drop down menu');
 		}
 	})
-
-
-
-	
 
 	// DEFINE EVENT HANDLER FOR BUY BUTTON
 	$('#buy').on('click', function() {
